@@ -1,0 +1,16 @@
+# Configuration file (12/16/25 19:26:26.084)
+
+# Server configuration
+Ice.Admin.ServerId=MediaServer
+Ice.Admin.Endpoints=tcp -h localhost
+Ice.ProgramName=MediaServer
+# Object adapter MediaServerAdapter
+MediaServerAdapter.Endpoints=tcp
+MediaServerAdapter.AdapterId=MediaServer.MediaServerAdapter
+# Server descriptor properties
+Identity=mediaServer1
+MediaServer.Content=media
+MediaServer.Playlists=playlists
+MediaServer.UsersFile=users.json
+Ice.MessageSizeMax=102400
+Ice.Default.Locator=IceGrid/Locator:default -p 4061

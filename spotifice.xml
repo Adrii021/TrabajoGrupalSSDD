@@ -1,0 +1,22 @@
+<icegrid>
+    <application name="SpotificeApp">
+        <node name="node1">
+            <server id="MediaServer" exe="./media_server.py" activation="on-demand">
+                <adapter name="MediaServerAdapter" endpoints="tcp">
+                    <object identity="mediaServer1" type="::Spotifice::MediaServer" property="Identity"/>
+                </adapter>
+                <property name="MediaServer.Content" value="media"/>
+                <property name="MediaServer.Playlists" value="playlists"/>
+                <property name="MediaServer.UsersFile" value="users.json"/>
+                <property name="Ice.MessageSizeMax" value="102400"/>
+            </server>
+        </node>
+        <node name="node2">
+            <server id="MediaRender" exe="./media_render.py" activation="on-demand">
+                <adapter name="MediaRenderAdapter" endpoints="tcp">
+                    <object identity="mediaRender1" type="::Spotifice::MediaRender" property="Identity"/>
+                </adapter>
+            </server>
+        </node>
+    </application>
+</icegrid>
