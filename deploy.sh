@@ -19,7 +19,7 @@ sleep 2
 
 # 4. Desplegar la aplicación
 echo "Desplegando SpotificeApp..."
-icegridadmin --Ice.Config=registry.config -e "application add spotifice.xml"
+icegridadmin --Ice.Config=registry.config -u admin -p admin -e "application add spotifice.xml"
 
 echo "=== DESPLIEGUE COMPLETADO ==="
 echo "Usa 'icegridadmin --Ice.Config=registry.config' para inspeccionar."

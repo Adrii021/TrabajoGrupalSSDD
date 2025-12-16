@@ -297,25 +297,10 @@ def main(ic):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        sys.exit("Usage: media_server.py <config-file>")
-
+    # Eliminamos el check de len(sys.argv) < 2 porque IceGrid maneja los argumentos
     try:
-        with Ice.initialize(sys.argv[1]) as communicator:
+        # CAMBIO CLAVE: Pasamos sys.argv entero, NO sys.argv[1]
+        with Ice.initialize(sys.argv) as communicator:
             main(communicator)
     except KeyboardInterrupt:
         logger.info("Server interrupted by user.")
-        if "MediaRender" in sys.argv[0]: # Pequeño truco para diferenciar si es el render
-            player = GstPlayer()
-            player.start()
-            try:
-                with Ice.initialize(sys.argv) as communicator:
-                    main(communicator, player)
-            except KeyboardInterrupt:
-                pass
-            finally:
-                player.shutdown()
-        else:
-            # Es el servidor
-            with Ice.initialize(sys.argv) as communicator:
-                main(communicator)

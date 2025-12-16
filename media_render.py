@@ -222,15 +222,12 @@ def main(ic, player):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        sys.exit("Usage: media_render.py <config-file>")
-
     player = GstPlayer()
     player.start()
     try:
-        with Ice.initialize(sys.argv[1]) as communicator:
+        with Ice.initialize(sys.argv) as communicator:
             main(communicator, player)
     except KeyboardInterrupt:
-        logger.info("Server interrupted by user.")
+        logger.info("Render interrupted by user.")
     finally:
         player.shutdown()
