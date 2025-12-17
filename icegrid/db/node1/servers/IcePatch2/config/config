@@ -1,0 +1,12 @@
+# Configuration file (12/18/25 00:40:56.999)
+
+# Server configuration
+Ice.Admin.ServerId=IcePatch2
+Ice.Admin.Endpoints=tcp -h localhost
+Ice.ProgramName=IcePatch2
+# Object adapter IcePatch2
+IcePatch2.Endpoints=tcp
+IcePatch2.AdapterId=IcePatch2.IcePatch2
+# Server descriptor properties
+IcePatch2.Directory=distrib
+Ice.Default.Locator=IceGrid/Locator:default -p 4061

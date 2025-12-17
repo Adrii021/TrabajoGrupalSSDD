@@ -1,16 +1,16 @@
-# Configuration file (12/16/25 21:19:56.599)
+# Configuration file (12/18/25 00:40:57.001)
 
 # Server configuration
-Ice.Admin.ServerId=MediaServer
+Ice.Admin.ServerId=MediaServer1
 Ice.Admin.Endpoints=tcp -h localhost
-Ice.ProgramName=MediaServer
+Ice.ProgramName=MediaServer1
 # Object adapter MediaServerAdapter
 MediaServerAdapter.Endpoints=tcp
-MediaServerAdapter.AdapterId=MediaServer.MediaServerAdapter
+MediaServerAdapter.AdapterId=MediaServer1.MediaServerAdapter
+MediaServerAdapter.ReplicaGroupId=MediaServerRep
 # Server descriptor properties
-Identity=mediaServer1
 MediaServer.Content=media
 MediaServer.Playlists=playlists
 MediaServer.UsersFile=users.json
-Ice.MessageSizeMax=102400
+ServerID=Servidor_NODO_1
 Ice.Default.Locator=IceGrid/Locator:default -p 4061

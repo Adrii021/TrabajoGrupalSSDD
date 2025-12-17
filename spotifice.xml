@@ -1,22 +1,53 @@
 <icegrid>
     <application name="SpotificeApp">
-        <node name="node1">
-            <server id="MediaServer" exe="./media_server.py" activation="on-demand">
-                <adapter name="MediaServerAdapter" endpoints="tcp">
-                    <object identity="mediaServer1" type="::Spotifice::MediaServer" property="Identity"/>
+
+        <replica-group id="MediaServerRep">
+            <load-balancing type="round-robin" n-replicas="1"/>
+            <object identity="MediaServer" type="::Spotifice::MediaServer"/>
+        </replica-group>
+
+        <server-template id="IcePatch2Template">
+            <server id="IcePatch2" exe="icepatch2server" activation="on-demand">
+                <adapter name="IcePatch2" endpoints="tcp">
+                    <object identity="IcePatch2/server" type="::IcePatch2::FileServer"/>
                 </adapter>
+                <property name="IcePatch2.Directory" value="distrib"/>
+            </server>
+        </server-template>
+
+        <node name="node1">
+            <server-instance template="IcePatch2Template"/>
+
+            <server id="MediaServer1" exe="./media_server.py" activation="on-demand">
+                <adapter name="MediaServerAdapter" endpoints="tcp" replica-group="MediaServerRep"/>
                 <property name="MediaServer.Content" value="media"/>
                 <property name="MediaServer.Playlists" value="playlists"/>
                 <property name="MediaServer.UsersFile" value="users.json"/>
-                <property name="Ice.MessageSizeMax" value="102400"/>
+                <property name="ServerID" value="Servidor_NODO_1"/>
+            </server>
+
+            <server id="MediaRender2" exe="./media_render.py" activation="on-demand">
+                <adapter name="MediaRenderAdapter" endpoints="tcp">
+                    <object identity="mediaRender2" type="::Spotifice::MediaRender" property="Identity"/>
+                </adapter>
             </server>
         </node>
+
         <node name="node2">
             <server id="MediaRender" exe="./media_render.py" activation="on-demand">
                 <adapter name="MediaRenderAdapter" endpoints="tcp">
                     <object identity="mediaRender1" type="::Spotifice::MediaRender" property="Identity"/>
                 </adapter>
             </server>
+
+            <server id="MediaServer2" exe="./media_server.py" activation="on-demand">
+                <adapter name="MediaServerAdapter" endpoints="tcp" replica-group="MediaServerRep"/>
+                <property name="MediaServer.Content" value="media"/>
+                <property name="MediaServer.Playlists" value="playlists"/>
+                <property name="MediaServer.UsersFile" value="users.json"/>
+                <property name="ServerID" value="Servidor_NODO_2"/>
+            </server>
         </node>
+
     </application>
 </icegrid>

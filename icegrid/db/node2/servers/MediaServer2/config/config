@@ -1,0 +1,16 @@
+# Configuration file (12/18/25 00:40:56.991)
+
+# Server configuration
+Ice.Admin.ServerId=MediaServer2
+Ice.Admin.Endpoints=tcp -h localhost
+Ice.ProgramName=MediaServer2
+# Object adapter MediaServerAdapter
+MediaServerAdapter.Endpoints=tcp
+MediaServerAdapter.AdapterId=MediaServer2.MediaServerAdapter
+MediaServerAdapter.ReplicaGroupId=MediaServerRep
+# Server descriptor properties
+MediaServer.Content=media
+MediaServer.Playlists=playlists
+MediaServer.UsersFile=users.json
+ServerID=Servidor_NODO_2
+Ice.Default.Locator=IceGrid/Locator:default -p 4061
