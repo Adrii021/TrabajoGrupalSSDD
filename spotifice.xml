@@ -41,7 +41,7 @@
             </server>
 
             <server id="MediaServer2" exe="./media_server.py" activation="on-demand">
-                <adapter name="MediaServerAdapter" endpoints="tcp" replica-group="MediaServerRep"/>
+                 <adapter name="MediaServerAdapter" endpoints="tcp" replica-group="MediaServerRep"/>
                 <property name="MediaServer.Content" value="media"/>
                 <property name="MediaServer.Playlists" value="playlists"/>
                 <property name="MediaServer.UsersFile" value="users.json"/>
